@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crunchy Corner</title>
+    <style>
+        /* Add your CSS styles here */
+        .slider-container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Add navigation buttons styling */
+        .slider-btn {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border: none;
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+        img {
+            width: 1500px; /* Adjust the width as needed */
+            height: 2000px; /* Maintain aspect ratio */
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider-container">
+    <div class="slider">
+        <!-- Image 1 -->
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/bomped/1/5835e499be9ce645bc354e28e03200ade05e620b/2.jpg" alt="Image 1">
+            
+        </div>
+
+        <!-- Image 2 -->
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/bomped/1/5835e499be9ce645bc354e28e03200ade05e620b/decription.png" alt="Image 2">
+        </div>
+
+        <!-- Image 3 -->
+        <div class="slide">
+            <img src="https://raw.githubusercontent.com/bomped/1/5835e499be9ce645bc354e28e03200ade05e620b/Fried%20potato.jpg" alt="Image 3">
+        </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button class="slider-btn prev-btn" onclick="prevSlide()">&#10094;</button>
+    <button class="slider-btn next-btn" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<script>
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Ensure the index stays within bounds
+        currentIndex = (index + totalSlides) % totalSlides;
+
+        // Move the slider to show the current slide
+        const translateValue = -currentIndex * 100 + '%';
+        slider.style.transform = 'translateX(' + translateValue + ')';
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+</script>
+
+</body>
+</html>
